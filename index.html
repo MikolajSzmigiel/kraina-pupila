@@ -111,7 +111,7 @@
   .about-card blockquote{font-family:var(--display);font-size:1.6rem;line-height:1.3;color:var(--forest);font-weight:500}
   .about-card cite{display:block;margin-top:1.4rem;font-style:normal;font-weight:800;color:var(--terra-dark)}
   .about-card .quote{position:absolute;top:-28px;left:28px;width:64px;height:64px;border-radius:50%;background:var(--terra);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:3rem;line-height:1;padding-top:.8rem}
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.2rem}
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2.2rem}
   .stat{background:var(--white);border-radius:20px;padding:1.3rem;border:1px solid rgba(31,59,45,.08)}
   .stat b{display:block;font-family:var(--display);font-size:2rem;color:var(--forest);line-height:1}
   .stat span{font-size:.9rem;color:var(--muted);font-weight:600}
@@ -153,8 +153,8 @@
   .ig-card h3{color:#fff;font-size:2.1rem;margin-bottom:.8rem}
   .ig-card p{opacity:.92;margin-bottom:1.8rem;max-width:34ch}
   .ig-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1.8rem}
-  .ig-tiles div{aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:2rem;backdrop-filter:blur(4px);transition:transform .3s}
-  .ig-tiles div:hover{transform:scale(1.06) rotate(-3deg)}
+  .ig-tiles img{aspect-ratio:1;object-fit:cover;width:100%;border-radius:16px;border:3px solid rgba(255,255,255,.55);transition:transform .3s}
+  .ig-tiles img:hover{transform:scale(1.06) rotate(-3deg)}
   .ig-card .btn{background:#fff;color:var(--terra-dark)}
   .ig-card .btn:hover{background:var(--forest);color:#fff}
 
@@ -190,6 +190,40 @@
   .foot a{text-decoration:none;font-weight:700}
   .foot a:hover{color:var(--terra)}
 
+  /* vacation banner */
+  .notice{position:fixed;inset:0 0 auto;z-index:55;background:var(--terra);color:#fff;text-align:center;font-weight:700;font-size:.92rem;padding:.55rem 44px .55rem 16px;line-height:1.35}
+  .notice a{color:#fff;font-weight:800;white-space:nowrap}
+  .notice button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;width:32px;height:32px}
+  body.has-notice header{top:var(--notice-h,40px)}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  .gallery button{border:0;padding:0;background:none;cursor:zoom-in;border-radius:22px;overflow:hidden;aspect-ratio:3/4;position:relative;box-shadow:0 14px 30px -18px rgba(31,59,45,.5)}
+  .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .gallery button:hover img{transform:scale(1.06)}
+  .gallery button:nth-child(4n+2){transform:translateY(28px)}
+  .gallery button:nth-child(4n+4){transform:translateY(28px)}
+  .gallery-cta{text-align:center;margin-top:4rem}
+  .lightbox{position:fixed;inset:0;z-index:100;background:rgba(20,30,24,.92);display:none;place-items:center;padding:24px}
+  .lightbox.open{display:grid}
+  .lightbox img{max-height:86vh;max-width:min(92vw,560px);border-radius:20px;box-shadow:0 30px 80px -20px #000}
+  .lightbox button{position:absolute;background:rgba(255,255,255,.12);border:0;color:#fff;width:52px;height:52px;border-radius:50%;font-size:1.6rem;cursor:pointer}
+  .lb-close{top:18px;right:18px}
+  .lb-prev{left:18px;top:50%;transform:translateY(-50%)}
+  .lb-next{right:18px;top:50%;transform:translateY(-50%)}
+
+  /* reviews + award */
+  .reviews-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem;align-items:start}
+  .award{background:var(--white);border-radius:32px;padding:1.4rem;box-shadow:var(--shadow);position:sticky;top:100px}
+  .award img{border-radius:20px;width:100%}
+  .award b{display:block;font-family:var(--display);font-size:1.5rem;color:var(--forest);margin-top:1.2rem;line-height:1.2}
+  .award span{color:var(--muted);font-size:.95rem}
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem}
+  .q{background:var(--white);border-radius:24px;padding:1.6rem;border:1px solid rgba(31,59,45,.07)}
+  .q .stars{color:var(--terra);letter-spacing:.15em;font-size:1rem;margin-bottom:.7rem}
+  .q p{font-family:var(--display);font-size:1.12rem;line-height:1.45;color:var(--forest)}
+  .q small{display:block;margin-top:1rem;color:var(--muted);font-weight:700}
+
   /* sticky mobile call */
   .call-fab{position:fixed;right:16px;bottom:16px;z-index:60;width:62px;height:62px;border-radius:50%;background:var(--terra);color:#fff;display:none;place-items:center;box-shadow:0 14px 30px -8px rgba(217,116,74,.8)}
   .call-fab svg{width:28px;height:28px}
@@ -206,6 +240,10 @@
     .grid-3{grid-template-columns:1fr 1fr}
     .steps{grid-template-columns:1fr 1fr}
     .faq-grid{gap:2rem}
+    .reviews-grid{grid-template-columns:1fr}
+    .award{position:static;max-width:420px}
+    .gallery{grid-template-columns:repeat(3,1fr)}
+    .gallery button:nth-child(n){transform:none}
   }
   @media (max-width:760px){
     .burger{display:block}
@@ -213,13 +251,17 @@
     .nav-links.open{transform:none}
     header:has(.nav-links.open){background:var(--cream)}
     .grid-3,.steps{grid-template-columns:1fr}
-    .stats{grid-template-columns:1fr 1fr 1fr}
+    .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+    .stat span{font-size:.8rem;line-height:1.3;display:block}
     .stat{padding:1rem}
-    .stat b{font-size:1.5rem}
+    .stat b{font-size:1.3rem;white-space:nowrap}
     .fc-1{left:0}
     .fc-2{right:0}
     .call-fab{display:grid}
     .map{min-height:320px}
+    .gallery{grid-template-columns:1fr 1fr;gap:.7rem}
+    .gallery button{border-radius:16px}
+    .quotes{grid-template-columns:1fr}
   }
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
@@ -241,6 +283,11 @@
   <symbol id="sparkle" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7zM19 15l1 2.6 2.6 1-2.6 1L19 22l-1-2.4-2.6-1 2.6-1z"/></symbol>
 </svg>
 
+<div class="notice" id="notice" hidden>
+  Urlop: salon nieczynny od 22 września do 4 października. Zarezerwuj termin na później: <a href="tel:+48733789933">733 789 933</a>
+  <button aria-label="Zamknij">×</button>
+</div>
+
 <header id="top">
   <nav class="wrap nav" aria-label="Główna nawigacja">
     <a href="#top" class="logo" aria-label="Kraina Pupila – strona główna">
@@ -253,7 +300,8 @@
     <ul class="nav-links" id="menu">
       <li><a href="#o-nas">O salonie</a></li>
       <li><a href="#uslugi">Usługi</a></li>
-      <li><a href="#wizyta">Jak to wygląda</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#opinie">Opinie</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="tel:+48733789933" class="btn btn-primary"><svg><use href="#phone"/></svg>733 789 933</a></li>
     </ul>
@@ -275,7 +323,7 @@
           <a href="#uslugi" class="btn btn-ghost">Zobacz usługi</a>
         </div>
         <div class="hero-badges">
-          <span><svg><use href="#heart"/></svg>Z miłości do zwierząt</span>
+          <span><svg><use href="#heart"/></svg>II miejsce · Orły Groomingu 2025</span>
           <span><svg><use href="#sparkle"/></svg>Renomowane kosmetyki</span>
           <span><svg><use href="#pin"/></svg>ul. 3 Maja 3</span>
         </div>
@@ -336,8 +384,8 @@
         <p class="lead" style="margin-top:1.2rem">Kraina Pupila to kameralny salon pielęgnacji w samym sercu Makowa Podhalańskiego. Pracujemy na wysokiej jakości sprzęcie i używamy wyłącznie kosmetyków renomowanych marek, dobieranych do rodzaju sierści, skóry i potrzeb Twojego pupila.</p>
         <p class="lead" style="margin-top:1rem">Bez pośpiechu, bez stresu — za to z przerwami na przytulasy, kiedy trzeba.</p>
         <div class="stats">
-          <div class="stat"><b>1:1</b><span>jeden pies na raz</span></div>
-          <div class="stat"><b>100%</b><span>indywidualne podejście</span></div>
+          <div class="stat"><b>II</b><span>miejsce w powiecie · Orły Groomingu 2025</span></div>
+          <div class="stat"><b>8,8/10</b><span>ocena w zestawieniu</span></div>
           <div class="stat"><b>∞</b><span>smaczków i głaskania</span></div>
         </div>
       </div>
@@ -365,6 +413,43 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
+  <section id="galeria">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Galeria</span>
+          <h2>Nasi pachnący<br>bywalcy</h2>
+        </div>
+        <p class="lead" style="max-width:40ch">Każdy pupil wychodzi od nas wystrzyżony, wyczesany i z kokardką. A na koniec pozuje na różowej sofie.</p>
+      </div>
+      <div class="gallery reveal">
+        <button type="button" data-i="0"><img src="img/pomeranian.jpg" alt="Szpic miniaturowy po strzyżeniu" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="1"><img src="img/maltanczyk-kwiaty.jpg" alt="Maltańczyk z kokardką" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="2"><img src="img/cavalier-sofa.jpg" alt="Cavalier King Charles spaniel" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="3"><img src="img/pudel.jpg" alt="Pudel po strzyżeniu" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="4"><img src="img/papillon.jpg" alt="Papillon po pielęgnacji" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="5"><img src="img/maltanczyk-serca.jpg" alt="Maltańczyk na walentynkowej sesji" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="6"><img src="img/owczarek-przed-po.jpg" alt="Owczarek szetlandzki – przed i po" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="7"><img src="img/westie.jpg" alt="West highland white terrier" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="8"><img src="img/duet-tecza.jpg" alt="Dwa psiaki po wizycie" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="9"><img src="img/cavalier-tecza.jpg" alt="Cavalier z czerwoną kokardą" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="10"><img src="img/pekinczyk.jpg" alt="Pekińczyk po strzyżeniu" loading="lazy" width="346" height="464"></button>
+        <button type="button" data-i="11"><img src="img/duet-sofa.jpg" alt="Psi duet na różowej sofie" loading="lazy" width="346" height="464"></button>
+      </div>
+      <div class="gallery-cta reveal">
+        <a class="btn btn-ghost" href="https://www.instagram.com/kraina_pupila/" target="_blank" rel="noopener"><svg><use href="#ig"/></svg>Więcej na @kraina_pupila</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia">
+    <button class="lb-close" aria-label="Zamknij">×</button>
+    <button class="lb-prev" aria-label="Poprzednie">‹</button>
+    <img alt="">
+    <button class="lb-next" aria-label="Następne">›</button>
+  </div>
+
   <!-- PROCESS -->
   <section id="wizyta" class="process">
     <svg class="paws" style="width:260px;right:-60px;top:40px;opacity:.06;color:var(--peach);transform:rotate(30deg)"><use href="#paw"/></svg>
@@ -390,19 +475,41 @@
         <span class="eyebrow">Dlaczego Kraina Pupila</span>
         <h2>Zadbany pies to szczęśliwy pies</h2>
         <ul class="checks">
+          <li><span class="tick"><svg><use href="#check"/></svg></span><div><b>Nagradzany salon</b><span>II miejsce w powiecie suskim w zestawieniu Orły Groomingu 2025.</span></div></li>
           <li><span class="tick"><svg><use href="#check"/></svg></span><div><b>Profesjonalny sprzęt</b><span>Pracujemy na narzędziach wysokiej jakości — bezpiecznych i komfortowych dla zwierzaka.</span></div></li>
           <li><span class="tick"><svg><use href="#check"/></svg></span><div><b>Renomowane kosmetyki</b><span>Szampony i odżywki dobierane do rodzaju sierści, wrażliwej skóry i alergii.</span></div></li>
-          <li><span class="tick"><svg><use href="#check"/></svg></span><div><b>Spokój i cierpliwość</b><span>Kameralny salon, bez tłoku i hałasu. Psy lękliwe i seniorzy mile widziani.</span></div></li>
+          <li><span class="tick"><svg><use href="#check"/></svg></span><div><b>Spokój i cierpliwość</b><span>Kameralny salon, bez tłoku i hałasu. Znajdziemy podejście także do psów lękliwych.</span></div></li>
           <li><span class="tick"><svg><use href="#check"/></svg></span><div><b>Blisko Ciebie</b><span>Centrum Makowa Podhalańskiego — łatwy dojazd z okolicznych miejscowości.</span></div></li>
         </ul>
       </div>
       <div class="ig-card reveal">
         <h3>Zobacz nasze metamorfozy</h3>
         <p>Przed i po, nowi klienci i stali bywalcy — wszystko wrzucamy na Instagram i Facebook.</p>
-        <div class="ig-tiles" aria-hidden="true"><div>🐶</div><div>🐩</div><div>🐕</div><div>🦴</div><div>🛁</div><div>💛</div></div>
+        <div class="ig-tiles" aria-hidden="true"><img src="img/maltanczyk-serca.jpg" alt="" loading="lazy"><img src="img/papillon.jpg" alt="" loading="lazy"><img src="img/cavalier-tecza.jpg" alt="" loading="lazy"><img src="img/westie.jpg" alt="" loading="lazy"><img src="img/duet-tecza.jpg" alt="" loading="lazy"><img src="img/pekinczyk.jpg" alt="" loading="lazy"></div>
         <div class="socials">
           <a class="btn" href="https://www.instagram.com/kraina_pupila/" target="_blank" rel="noopener"><svg><use href="#ig"/></svg>@kraina_pupila</a>
           <a class="btn" href="https://www.facebook.com/krainapupil/" target="_blank" rel="noopener"><svg><use href="#fb"/></svg>Facebook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="opinie">
+    <div class="wrap reviews-grid">
+      <div class="award reveal">
+        <img src="img/dyplom.jpg" alt="Dyplom Orły Groomingu 2025 dla Kraina Pupila – Martyna Jopek, II miejsce w powiecie suskim" loading="lazy" width="345" height="435">
+        <b>II miejsce w powiecie suskim</b>
+        <span>Orły Groomingu 2025 · ocena 8,8/10</span>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Opinie</span>
+        <h2>Tak mówią o nas właściciele</h2>
+        <div class="quotes">
+          <figure class="q"><div class="stars" aria-hidden="true">★★★★★</div><p>„Polecam z całego serca! Pełen profesjonalizm, świetne podejście do pieska, który jest bardzo strachliwy. Jestem zachwycona!”</p><small>Opinia klienta z Facebooka</small></figure>
+          <figure class="q"><div class="stars" aria-hidden="true">★★★★★</div><p>„Cudowne miejsce! Pani Martyna to profesjonalna, ciepła, mądra osoba, ze sporą wiedzą behawioralną. Pies zaopiekowany i wypielęgnowany! Przyjeżdżamy z daleka i nadal będziemy.”</p><small>Opinia klienta z Facebooka</small></figure>
+          <figure class="q"><div class="stars" aria-hidden="true">★★★★★</div><p>„Prawdziwa kraina pupila, a nawet raj dla psiaków! Profesjonalna obsługa i podejście do zwierzaka. Na pewno nieraz jeszcze odwiedzę z Lolą to miejsce ;)”</p><small>Opinia klienta z Facebooka</small></figure>
+          <figure class="q"><div class="stars" aria-hidden="true">★★★★★</div><p>„Mega polecam! Profesjonalne podejście! Będziemy częściej wpadać!”</p><small>Opinia klienta z Facebooka</small></figure>
         </div>
       </div>
     </div>
@@ -505,6 +612,39 @@
       art.appendChild(b);
     }
   }
+
+  // vacation banner – shows only until the end of the vacation
+  const notice = document.getElementById('notice');
+  if (new Date() < new Date('2026-10-05T00:00:00')) {
+    notice.hidden = false;
+    document.body.classList.add('has-notice');
+    const fit = () => document.body.style.setProperty('--notice-h', notice.offsetHeight + 'px');
+    fit(); window.addEventListener('resize', fit);
+    document.querySelector('.hero').style.paddingTop = 'calc(140px + var(--notice-h, 40px))';
+    notice.querySelector('button').addEventListener('click', () => {
+      notice.hidden = true; document.body.classList.remove('has-notice');
+      document.querySelector('.hero').style.paddingTop = '';
+    });
+  }
+
+  // gallery lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  const shots = [...document.querySelectorAll('.gallery button')];
+  let cur = 0;
+  const show = i => { cur = (i + shots.length) % shots.length; const im = shots[cur].querySelector('img'); lbImg.src = im.src; lbImg.alt = im.alt; };
+  shots.forEach((b, i) => b.addEventListener('click', () => { show(i); lb.classList.add('open'); }));
+  const closeLb = () => lb.classList.remove('open');
+  lb.querySelector('.lb-close').addEventListener('click', closeLb);
+  lb.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); show(cur - 1); });
+  lb.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); show(cur + 1); });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
 
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
